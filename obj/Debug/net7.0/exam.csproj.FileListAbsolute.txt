@@ -1,0 +1,15 @@
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\bin\Debug\net7.0\exam.exe
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\bin\Debug\net7.0\exam.deps.json
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\bin\Debug\net7.0\exam.runtimeconfig.json
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\bin\Debug\net7.0\exam.dll
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\bin\Debug\net7.0\exam.pdb
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.csproj.AssemblyReference.cache
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.AssemblyInfoInputs.cache
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.AssemblyInfo.cs
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.csproj.CoreCompileInputs.cache
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.dll
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\refint\exam.dll
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.pdb
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\exam.genruntimeconfig.cache
+C:\Users\lois83274\OneDrive - Willis Towers Watson\Desktop\trainocate\exam\obj\Debug\net7.0\ref\exam.dll
