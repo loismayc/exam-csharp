@@ -1,4 +1,4 @@
-﻿using Exam.Conf;
+﻿using Exam.Commands;
 using Exam.Models;
 using Exam.Interfaces;
 using Exam.Services;
@@ -29,45 +29,70 @@ namespace Exam
 
                 if (choice == 1)
                 {
-                    if (employeeList.Count > 0)
-                    {
-                        Console.WriteLine("List of employees: ");
-                        for (int i = 0; i < employeeList.Count; i++)
-                        {
-                            Employee eList = employeeList[i];
-                            Console.WriteLine($"\nEmployee Number: {eList.EmployeeNumber}");
-                            Console.WriteLine($"Name: {eList.FirstName} {eList.LastName}");
-                            Console.WriteLine($"Base Salary: {eList.BaseSalary} ");
+                    var normalEmployees = employeeService.GetAllNormalEmployees();
+                    var saleEmployees = employeeService.GetAllSalesEmployees().Cast<SalesEmployee>().ToList();
 
+                    if (employeeService.GetAll().Count > 0)
+                    {
+                        Console.WriteLine("List of all employees:");
+
+                        if (normalEmployees.Count > 0)
+                        {
+                            Console.WriteLine("\nNormal Employee:");
+                            foreach (Employee employee in normalEmployees)
+                            {
+                                Console.WriteLine("Id: " + employee.Id);
+                                Console.WriteLine("Employee #: " + employee.EmployeeNumber);
+                                Console.WriteLine("Base salary: " + employee.GetSalary());
+                            }
+                        }
+
+                        if (saleEmployees.Count > 0)
+                        {
+                            Console.WriteLine("\nSales Employee:");
+                            foreach (SalesEmployee saleEmployee in saleEmployees)
+                            {
+                                Console.WriteLine("Id: " + saleEmployee.Id);
+                                Console.WriteLine("Employee #: " + saleEmployee.EmployeeNumber);
+                                Console.WriteLine("Name: " + saleEmployee.FirstName + " " + saleEmployee.LastName);
+                                Console.WriteLine("Base salary: " + saleEmployee.GetSalary());
+                                Console.WriteLine("Commission: " + saleEmployee.Commission);
+                            }
                         }
                     }
                     else
                     {
-                        Console.WriteLine("List is empty");
+                        Console.WriteLine("Employee list is empty");
                     }
                 }
-                else if (choice == 2) //save
+                else if (choice == 2) //save - add id validation 
                 {
                     Console.WriteLine("Regular employee or Sales employee? R/S");
                     string enter = Console.ReadLine().ToLower();
-
-                    Console.Write("Enter first name of employee: ");
-                    string firstName = Console.ReadLine();
-                    Console.Write("Enter last name of employee: ");
-                    string lastName = Console.ReadLine();
-                    Console.Write("Enter employee number: ");
-                    string employeeNum = Console.ReadLine();
-                    Console.Write("Enter base salary: ");
-                    float baseSalary = float.Parse(Console.ReadLine());
-
                     if (enter == "r")
                     {
+                        Console.Write("Enter first name of employee: ");
+                        string firstName = Console.ReadLine();
+                        Console.Write("Enter last name of employee: ");
+                        string lastName = Console.ReadLine();
+                        Console.Write("Enter employee number: ");
+                        string employeeNum = Console.ReadLine();
+                        Console.Write("Enter base salary: ");
+                        float baseSalary = float.Parse(Console.ReadLine());
                         int id = employeeList.Count + 1;
                         Employee eInfo = new Employee(id, firstName, lastName, employeeNum, baseSalary);
                         eInfo = employeeService.Save(eInfo);
                     }
                     else if (enter == "s")
                     {
+                        Console.Write("Enter first name of employee: ");
+                        string firstName = Console.ReadLine();
+                        Console.Write("Enter last name of employee: ");
+                        string lastName = Console.ReadLine();
+                        Console.Write("Enter employee number: ");
+                        string employeeNum = Console.ReadLine();
+                        Console.Write("Enter base salary: ");
+                        float baseSalary = float.Parse(Console.ReadLine());
                         Console.Write("Enter commission: ");
                         float commission = float.Parse(Console.ReadLine());
                         int sId = salesEmployeeList.Count + 1;
@@ -78,17 +103,16 @@ namespace Exam
                     {
                         Console.WriteLine("Invalid");
                     }
-                    Console.WriteLine("Employee Saved!");
+
+                    //  Console.WriteLine("Employee Saved!");
 
                 }
                 else if (choice == 3) // delete
                 {
-                    Console.WriteLine("Enter employee's first name:");
-                    var firstName = Console.ReadLine();
-                    Console.WriteLine("Enter employee's last name:");
-                    var lastName = Console.ReadLine();
+                    Console.WriteLine("Enter employee number:");
+                    var empId = Console.ReadLine();
 
-                    var employee = employeeService.GetAll().FirstOrDefault(e => e.FirstName == firstName && e.LastName == lastName);
+                    var employee = employeeService.GetAll().FirstOrDefault(e => e.EmployeeNumber == empId);
                     if (employee != null)
                     {
                         employeeService.Delete(employee);
@@ -101,12 +125,11 @@ namespace Exam
 
 
                 }
-                else if (choice == 4) // add sale
+                else if (choice == 4) // add sale 
                 {
                     Console.Write("Sales Employee ID: ");
-                    float sEmpID = float.Parse(Console.ReadLine());
-                    var salesEmployeeId = employeeService.GetAllSalesEmployees().FirstOrDefault(e => e.Id == sEmpID);
-                    // SalesEmployee salesEmp = (SalesEmployee)employeeService.GetAllSalesEmployees().SingleOrDefault(x => x.Id == sEmpID);
+                    var sEmpID = Console.ReadLine();
+                    var salesEmployeeId = employeeService.GetAllSalesEmployees().FirstOrDefault(e => e.EmployeeNumber == sEmpID);
 
                     if (salesEmployeeId != null)
                     {
@@ -128,6 +151,9 @@ namespace Exam
                 {
                     Console.WriteLine("Bye");
                     show = false;
+
+                    var report = new BuildReport();
+                    Console.WriteLine(report.Execute());
                 }
                 else
                 {
@@ -138,17 +164,6 @@ namespace Exam
 
         }
 
-        // public static Employee FindItem(Employee empId, int id)
-        // {
-        //     Employee item = employeeService.FindById(empId.Id, id);
-
-        //     if (item == null)
-        //     {
-        //         Console.WriteLine($"ERROR. Item ID {id} is Invalid.");
-        //     }
-
-        //     return item;
-        // }
 
     }
 }

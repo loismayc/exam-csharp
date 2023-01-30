@@ -22,8 +22,7 @@ public class EmployeeService : IEmployeeService
 
     public void Delete(Employee e)
     {
-        Employee employeeMatch = employees.SingleOrDefault(x => x.Id == e.Id);
-        employees.Remove(employeeMatch);
+        this.GetAll().Remove(e);
     }
 
     public List<Employee> GetAll()
@@ -33,9 +32,13 @@ public class EmployeeService : IEmployeeService
 
     public List<Employee> GetAllSalesEmployees()
     {
-        return employees.Where(e => e is SalesEmployee).Select(se => (Employee)se).ToList();
+        return this.GetAll().OfType<SalesEmployee>().Cast<Employee>().ToList();
 
+    }
 
+    public List<Employee> GetAllNormalEmployees()
+    {
+        return this.GetAll().Where(employee => !(employee is SalesEmployee)).ToList();
     }
 
     public Employee Save(Employee e)

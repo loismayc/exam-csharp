@@ -18,5 +18,10 @@ namespace Exam.Models
             float totalSales = Sales.Sum(s => s.Amount);
             return BaseSalary + Commission * totalSales;
         }
+
+        public List<Sale> GetSales()
+        {
+            return this.Sales;
+        }
     }
 }

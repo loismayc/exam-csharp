@@ -17,5 +17,15 @@ namespace Exam.Models
             return BaseSalary;
         }
 
+        public void DisplayEmployee()
+        {
+            Console.WriteLine($"Employee Number: {EmployeeNumber} \nName: {FirstName} {LastName}");
+
+        }
+
+        public static explicit operator Employee(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
